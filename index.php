@@ -22,13 +22,12 @@ if (!is_null($events['events'])) {
     foreach ($events['events'] as $event) { 
         // Line API send a lot of event type, we interested in message only.
         if ($event['type'] == 'message') {
-            switch($event['message']['type']) {
             
                 // Get replyToken
                 $replyToken = $event['replyToken'];
 
-
                 switch($event['message']['type']) {
+
                 case 'image':
                 $messageID = $event['message']['id'];
                 $respMessage = 'Hello, your image ID is '. $messageID;
