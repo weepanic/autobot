@@ -26,8 +26,9 @@ if (!is_null($events['events'])) {
             
                 // Get replyToken
                 $replyToken = $event['replyToken'];
+                $ask = $event['message']['text'];
 
-                switch($event['message']['type']) {
+                switch(strtolower($ask)) {
 
                 case 'm':
                     $respMessage = 'What sup man Go away!';
