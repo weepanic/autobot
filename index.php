@@ -29,19 +29,29 @@ if (!is_null($events['events'])) {
 
                 switch($event['message']['type']) {
 
-                case 'image':
-                    $messageID = $event['message']['id'];
-                    $respMessage = 'Hello, your image ID is '. $messageID;
+                case 'm':
+                    $respMessage = 'What sup man Go away!';
                     break;
 
+                    
+                case 'f':
+                $respMessage = 'I love you lady';
+                break;
+
                 default:
-                    $respMessage = 'Please send image only';
+                    $respMessage = 'What is your sex? M or F';
+                
                      break;
                 }
+
+
+
+
             $httpClient = new CurlHTTPClient($channel_token);
             $bot = new LINEBot($httpClient, array('channelSecret' => $channel_secret));
             $textMessageBuilder = new TextMessageBuilder($respMessage);
             $response = $bot->replyMessage($replyToken, $textMessageBuilder);
+            
         } 
     } 
 }
