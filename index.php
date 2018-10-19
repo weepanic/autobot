@@ -8,7 +8,7 @@ use \LINE\LINEBot;
 use \LINE\LINEBot\MessageBuilder\TextMessageBuilder;
 
 //Channel token กับ Channel secret ที่ได้มาจาก LINE API 
-$channel_token = 'ei3rF079hSeJ7YOv0izkRGxVzmVqNbIMrHvHmpK9zjcPSkISDK69Z9W228PP7jz0lIIJsUgdb6cptqZws2pczzE4RDYSVF3GzKzZPkgr/ba1XTSR31sPQm8X17AFu8vzPz5GHzfobDF6SSUOUgQFkAdB04t89/1O/w1cDnyilFU';
+$channel_token = 'ei3rF079hSeJ7YOv0izkRGxVzmVqNbIMrHvHmpK9zjcPSkISDK69Z9W228PP7jz0lIIJsUgdb6cptqZws2pczzE4RDYSVF3GzKzZPkgr/ba1XTSR31sPQm8X17AFu8vzPz5GHzfobDF6SSUOUgQFkAdB04t89/1O/w1cDnyilFU=';
 $channel_secret = '74489c664a7396cc79868a96fe7498de';
 
 // Get message from Line API $content = file_get_contents('php://
@@ -18,6 +18,7 @@ $content = file_get_contents('php://input');
 $events = json_decode($content, true);
 
 if (!is_null($events['events'])) {
+
     // Loop through each event
     foreach ($events['events'] as $event) { 
         // Line API send a lot of event type, we interested in message only.
@@ -29,13 +30,13 @@ if (!is_null($events['events'])) {
                 switch($event['message']['type']) {
 
                 case 'image':
-                $messageID = $event['message']['id'];
-                $respMessage = 'Hello, your image ID is '. $messageID;
-                break;
+                    $messageID = $event['message']['id'];
+                    $respMessage = 'Hello, your image ID is '. $messageID;
+                    break;
 
                 default:
-                $respMessage = 'Please send image only';
-                break;
+                    $respMessage = 'Please send image only';
+                     break;
 
                 $httpClient = new CurlHTTPClient($channel_token);
                 $bot = new LINEBot($httpClient, array('channelSecret' => $channel_secret));
